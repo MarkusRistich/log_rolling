@@ -46,6 +46,7 @@ def set_logging_level(log, level):
     logging.basicConfig()
     log.setLevel(level)
 
+
 def create_logger(name):
     """ Examples of the various logging severity.
 
@@ -59,7 +60,7 @@ if __name__ == "__main__":
     # log = create_logger("")
     # log_from_namedlogger(log)
 
-    local_logger = create_logger(__file__)
+    local_logger = create_logger(__name__)
     set_logging_level(local_logger, logging.DEBUG)
     log_from_namedlogger(local_logger)
 

@@ -20,7 +20,7 @@ handlers:
         backupCount: 5
         level: DEBUG
         formatter: simple
-        filename : Thrift.log
+        filename : dump.log
 
 loggers:
 
