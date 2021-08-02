@@ -60,9 +60,9 @@ if __name__ == "__main__":
     # log = create_logger("")
     # log_from_namedlogger(log)
 
-    local_logger = create_logger(__name__)
-    set_logging_level(local_logger, logging.DEBUG)
-    log_from_namedlogger(local_logger)
+    module_logger = create_logger(__name__)
+    set_logging_level(module_logger, logging.DEBUG)
+    log_from_namedlogger(module_logger)
 
     # shared_logger = create_logger("shared_logger")
     # log_from_namedlogger(shared_logger)

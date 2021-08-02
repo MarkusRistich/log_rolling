@@ -7,27 +7,35 @@ import logging
 
 
 def load_config_from_args():
-    """ Create a basic logging config. This applies most principles, such as the level of logging and a default format.
+    """ Create a basic logging config. This applies most principles, such
+        as the level of logging and a default format.
     """
 
-    # no FileHandler, only a StreamHandler
-    logging.basicConfig(filename="logs/args.log",
-                        filemode='w',
-                        level=logging.INFO)
-
-    # using asctime allows us to see a better timestamp
+    # A basic config will usually specify a log file and a logging level
     # logging.basicConfig(filename="logs/args.log",
     #                     filemode='w',
-    #                     format='%(asctime)s %(message)s',
     #                     level=logging.INFO)
 
+    # Using asctime allows us to see a better timestamp
+    logging.basicConfig(filename="logs/args.log",
+                        filemode='w',
+                        format='%(asctime)s %(message)s',
+                        level=logging.INFO)
+
+    # Storing the name of the file and the logging level for the LogRecord
+    # saves a lot of troubleshooting.
+    logging.basicConfig(filename="logs/args.log",
+                        filemode='w',
+                        format='%(asctime)s %(message)s',
+                        level=logging.INFO)
     log = logging.getLogger("shared_logger")
     log.info("Now this is a big step up from unreadable logging messages!")
 
 
 def load_config_from_dict():
-    """ Using a config from a dict is helpful if you are picking or passing a config between files.
-        In practice, it's going to be much easier to understand how the file read processes, but
+    """ Using a config from a dict is helpful if you are picking or moving between files.
+        However this relies on external formatting modules, which have long load times
+        and introduce dependencies.
     """
     import logging.config as logging_config
     import yaml
@@ -43,11 +51,30 @@ def load_config_from_dict():
 
 
 def load_config_from_fileConfig():
+    """ Best practice format for storing config files as of Python 2.7+
+    """
     from logging.config import fileConfig
-    fileConfig('basic_config.ini')
+
+    path_to_config = "basic_config.ini"
+    fileConfig(path_to_config)
+    """
+    handlers:
+        console:
+            class : logging.StreamHandler
+            formatter: brief
+            level   : INFO
+            filters: [allow_foo]
+            stream  : ext://sys.stdout
+        file:
+            class : logging.handlers.RotatingFileHandler
+            formatter: precise
+            filename: logconfig.log
+            maxBytes: 1024
+            backupCount: 3
+    """
+
 
     log = logging.getLogger("shared_logger")
-
     log.info("Now we're using a config effectively!")
 
 
