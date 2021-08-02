@@ -57,12 +57,12 @@ def create_logger(name):
 if __name__ == "__main__":
     # log_no_tracking()
 
-    # log = create_logger("")
+    # log = create_logger("JAPANESE_HOUSE")
     # log_from_namedlogger(log)
-
+    #
     module_logger = create_logger(__name__)
     set_logging_level(module_logger, logging.DEBUG)
     log_from_namedlogger(module_logger)
 
-    # shared_logger = create_logger("shared_logger")
+    # shared_logger = create_logger("shared")
     # log_from_namedlogger(shared_logger)

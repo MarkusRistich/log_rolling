@@ -85,6 +85,6 @@ def autogenerate_new_logfiles():
     pass
 
 if __name__ == "__main__":
-    load_config_from_args()
+    # load_config_from_args()
     # load_config_from_dict()
-    # load_config_from_fileConfig()
+    load_config_from_fileConfig()

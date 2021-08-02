@@ -27,7 +27,7 @@ def file_handler(log_location):
 #RotatingFileHandler - send logs to disk with a maximum bytesize
 def rotating_file_handler(log_location):
     from logging.handlers import RotatingFileHandler
-    hdlr = RotatingFileHandler(log_location, maxBytes=2000, backupCount=10)
+    hdlr = RotatingFileHandler(log_location, maxBytes=4000000, backupCount=10)
     log = logging.getLogger("shared")
     log.addHandler(hdlr)
 
@@ -37,8 +37,8 @@ def rotating_file_handler(log_location):
 def timed_rotating_file_handler(log_location):
     from logging.handlers import TimedRotatingFileHandler
     from datetime import time
-    rollover_time = time(11, 34, second=55)
-    hdlr = TimedRotatingFileHandler(log_location, when="H", backupCount=10, atTime=rollover_time)
+    rollover_time = time(hour=11, minute=34, second=55)
+    hdlr = TimedRotatingFileHandler(log_location, when="H", backupCount=24, atTime=rollover_time)
 
     log = logging.getLogger("shared")
     log.addHandler(hdlr)
